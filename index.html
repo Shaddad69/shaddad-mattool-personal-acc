@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaddad Mattool | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --nav-bg: rgba(15, 23, 42, 0.85);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover: rgba(255, 255, 255, 0.06);
+            --primary: #10b981; /* Emerald */
+            --primary-hover: #059669;
+            --accent: #eab308; /* Gold */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navbar */
+        .navbar-wrapper {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            padding: 0.5rem 1rem 0.5rem 2rem;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.8rem;
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(49, 46, 129, 0.2);
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(67, 56, 202, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            box-shadow: 0 6px 20px rgba(49, 46, 129, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            padding-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(67, 56, 202, 0.1);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            display: block;
+        }
+
+        .hero p.desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin: 1.5rem 0 2.5rem 0;
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .social-icon:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header h2 span {
+            color: var(--primary);
+        }
+
+        .section-header .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Glass Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.5);
+            background: var(--card-hover);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-weight: 500;
+        }
+
+        /* Projects */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-image {
+            height: 200px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .project-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+        }
+
+        footer h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p.footer-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-actions {
+                flex-direction: column;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            text-align: left;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-text p.desc {
+            margin: 0 0 2.5rem 0;
+        }
+
+        .hero-text .hero-actions, .hero-text .social-icons {
+            justify-content: flex-start;
+        }
+
+        .hero-image-container {
+            flex: 0.8;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-portrait {
+            width: 256px;
+            height: 256px;
+            object-fit: contain;
+            mix-blend-mode: screen; /* Converts black background of JPG to transparent */
+            filter: drop-shadow(0 0 40px rgba(234, 179, 8, 0.4)) drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        
+        .hero-portrait:hover {
+            transform: translateY(-10px);
+            filter: drop-shadow(0 0 60px rgba(234, 179, 8, 0.6)) drop-shadow(0 0 30px rgba(16, 185, 129, 0.5));
+        }
+
+        @media (min-width: 768px) {
+            .hero-portrait {
+                width: 320px;
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-layout {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-text p.desc {
+                margin: 0 auto 2.5rem auto;
+            }
+            .hero-text .hero-actions, .hero-text .social-icons {
+                justify-content: center;
+            }
+            .hero-image-container {
+                justify-content: center;
+            }
+            .hero-image {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <a href="#" class="logo">SHADDAD <span>MATTOOL</span></a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#skills">About</a>
+                <a href="#projects">Divisions</a>
+                <a href="#services">Corporate Vision</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#contact" class="btn btn-nav">Inquire Now &rarr;</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-layout">
+            <div class="hero-text">
+                <div class="badge">
+                    <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    Established Excellence
+                </div>
+                <h1>Shaddad Mattool <br><span>Hafsa Group</span></h1>
+                <p class="desc">
+                    Lead Islamic History Researcher, Full-Stack Developer, and Business Strategist operating across primary business verticals including technology, lifestyle, and global trade solutions.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Explore Our Ecosystem &rarr;</a>
+                    <a href="#services" class="btn btn-secondary">Corporate Vision</a>
+                </div>
+            </div>
+            
+            <div class="hero-image-container">
+                <img src="photo-transparent.png" alt="Shaddad Mattool" class="hero-portrait">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills & <span>Expertise</span></h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid">
+                <!-- Skill 1 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Video Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                    </div>
+                    <h3>Video Editor</h3>
+                    <p>Professional video editing, color grading, and visual storytelling to create engaging content.</p>
+                    <div class="tags">
+                        <span class="tag">Premiere Pro</span>
+                        <span class="tag">After Effects</span>
+                        <span class="tag">DaVinci Resolve</span>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Camera Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z"/></svg>
+                    </div>
+                    <h3>Photographer</h3>
+                    <p>Professional photography, capturing high-quality moments, portraits, and events with a creative eye.</p>
+                    <div class="tags">
+                        <span class="tag">Portrait</span>
+                        <span class="tag">Event Photography</span>
+                        <span class="tag">Lightroom</span>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Book Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                    </div>
+                    <h3>Islamic Research</h3>
+                    <p>Leading historical research, analyzing classical texts, and providing deeply researched insights.</p>
+                    <div class="tags">
+                        <span class="tag">History</span>
+                        <span class="tag">Analysis</span>
+                        <span class="tag">Leadership</span>
+                    </div>
+                </div>
+
+                <!-- Skill 4: AI Digital Artist -->
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Magic Wand SVG -->
+                        <svg viewBox="0 0 24 24"><path d="M7.5 5.6L5 7l1.4-2.5L5 2l2.5 1.4L10 2 8.6 4.5 10 7 7.5 5.6zm12 9.8L17 14l1.4 2.5L17 19l2.5-1.4L22 19l-1.4-2.5L22 14l-2.5 1.4zM22 2l-2.5 1.4L17 2l1.4 2.5L17 7l2.5-1.4L22 7l-1.4-2.5L22 2zm-7.63 5.29c-.39-.39-1.02-.39-1.41 0L1.29 18.96c-.39.39-.39 1.02 0 1.41l2.34 2.34c.39.39 1.02.39 1.41 0L16.71 11.04c.39-.39.39-1.02 0-1.41l-2.34-2.34z"/></svg>
+                    </div>
+                    <h3>AI Digital Artist</h3>
+                    <p>Creating highly detailed digital imagery with custom cinematic lighting, color grading, and vintage aesthetics using advanced AI tools.</p>
+                    <div class="tags">
+                        <span class="tag">Prompt Engineering</span>
+                        <span class="tag">AI Imagery</span>
+                        <span class="tag">Concept Art</span>
+                    </div>
+                </div>
+
+                <!-- Skill 5: Business Strategy -->
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Lightbulb SVG -->
+                        <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>
+                    </div>
+                    <h3>Business Strategy & Branding</h3>
+                    <p>Conceptualizing commercial enterprises, planning operational logistics, logo design, marketing, and web domain setup.</p>
+                    <div class="tags">
+                        <span class="tag">Brand Strategy</span>
+                        <span class="tag">Logo Design</span>
+                        <span class="tag">Business Planning</span>
+                    </div>
+                </div>
+
+                <!-- Skill 6: Audio Production -->
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Music SVG -->
+                        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                    </div>
+                    <h3>Audio Production</h3>
+                    <p>Multi-track audio editing, vocal processing, and mastering to produce high-quality digital soundscapes.</p>
+                    <div class="tags">
+                        <span class="tag">BandLab</span>
+                        <span class="tag">Audio Editing</span>
+                        <span class="tag">Vocal Processing</span>
+                    </div>
+                </div>
+
+                <!-- Skill 7: Multilingual Translation -->
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Language SVG -->
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.9 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.09 13.36 4 12.69 4 12s.09-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c1.96-3.36 5.6-5.63 9.77-5.92.51 1.06.94 2.17 1.28 3.33H12V8h-3.97zm2.74 12.44c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zm2.59-5.96H8.64c-.09-.67-.14-1.33-.14-2s.05-1.33.14-2h6.72c.09.67.14 1.33.14 2s-.05 1.33-.14 2zm1.26 3.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.66-2.49 2.93-4.33 3.56zM19.74 14h-3.38c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.17.64.26 1.31.26 2s-.09 1.36-.26 2z"/></svg>
+                    </div>
+                    <h3>Multilingual Translation</h3>
+                    <p>Translating and analyzing academic texts, stories, and poetry across Malayalam, English, and Arabic.</p>
+                    <div class="tags">
+                        <span class="tag">English-Malayalam</span>
+                        <span class="tag">Literature</span>
+                        <span class="tag">Translation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section" style="background: rgba(0,0,0,0.15)">
+        <div class="container">
+            <div class="section-header">
+                <h2>My <span>Services</span></h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Web Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/></svg>
+                    </div>
+                    <h3>Web Engineering</h3>
+                    <p>End-to-end full-stack development, delivering scalable architecture and seamless user experiences with modern tech stacks.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Library Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg>
+                    </div>
+                    <h3>Research & Consulting</h3>
+                    <p>Providing deep analysis, fact-checking, and comprehensive studies in Islamic history for academic and publication needs.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <!-- Mic Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+                    </div>
+                    <h3>Tech & History Talks</h3>
+                    <p>Dynamic public speaking covering self-taught developer journeys, technical insights, and rich historical narratives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hafsa Group Enterprises - <span>Future Ventures</span></h2>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Master Plan Image -->
+            <div style="text-align: center; margin-bottom: 4rem; padding: 0 1rem;">
+                <img src="master_plan_hr.jpg" alt="Hafsa Group Master Plan" style="width: 100%; max-width: 1152px; margin: 0 auto; display: block; border-radius: 1rem; box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.4), 0 0 30px rgba(234, 179, 8, 0.15); transition: transform 0.3s ease;">
+                <p style="margin-top: 1.5rem; font-size: 1.3rem; font-weight: 600; color: var(--gold); letter-spacing: 0.5px;">Hafsa Group - Building Dreams Together (Master Plan)</p>
+            </div>
+
+            <div class="grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Ring SVG -->
+                        <svg style="width: 48px; height: 48px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 2C8 2 4 5 4 9c0 3 2 5.5 4.7 6.6L12 22l3.3-6.4c2.7-1.1 4.7-3.6 4.7-6.6 0-4-4-7-8-7zm0 2c2.8 0 5 2 5 5 0 2-1.5 3.8-3.6 4.6l-1.4.5L12 16.8l-1.2-2.3-1.4-.5C7.5 13.2 6 11.4 6 9c0-3 2.2-5 5-5zm0 2.5c-1.4 0-2.5 1.1-2.5 2.5S10.6 11.5 12 11.5 14.5 10.4 14.5 9 13.4 6.5 12 6.5z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="tags" style="margin-bottom: 1rem;">
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Events</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Wedding</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Services</span>
+                        </div>
+                        <h3>Professional Marriage Event Shop</h3>
+                        <p>Premium event management and professional shop for all marriage-related services and accessories.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Ship SVG -->
+                        <svg style="width: 48px; height: 48px; fill: currentColor;" viewBox="0 0 24 24"><path d="M20 21c-1.39 0-2.78-.47-4-1.32-2.44 1.71-5.56 1.71-8 0C6.78 20.53 5.39 21 4 21H2v2h2c1.38 0 2.74-.35 4-.99 2.52 1.29 5.48 1.29 8 0 1.26.65 2.62.99 4 .99h2v-2h-2zM3.95 19H4c1.6 0 3.02-.88 4-2 .98 1.12 2.4 2 4 2s3.02-.88 4-2c.98 1.12 2.4 2 4 2h.05l1.89-6.68c.08-.26.06-.54-.06-.78s-.34-.42-.6-.5L20 11v-1c0-2.76-2.24-5-5-5h-3V3h-3v2H6c-2.76 0-5 2.24-5 5v1l-1.28.43c-.26.08-.48.26-.6.5s-.14.52-.06.78L3.95 19zM6 7h9c1.65 0 3 1.35 3 3v1H4v-1c0-1.65 1.35-3 3-3z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="tags" style="margin-bottom: 1rem;">
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">E-Commerce</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Export</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Logistics</span>
+                        </div>
+                        <h3>International Dropshipping & Export</h3>
+                        <p>Global dropshipping store and export shipping network bridging international markets.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Mobile SVG -->
+                        <svg style="width: 48px; height: 48px; fill: currentColor;" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="tags" style="margin-bottom: 1rem;">
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Retail</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Smartphones</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Gadgets</span>
+                        </div>
+                        <h3>Mobile City Hub</h3>
+                        <p>A massive retail hub for smartphones featuring top brands like Vivo, Apple (iPhone), and Samsung.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Car SVG -->
+                        <svg style="width: 48px; height: 48px; fill: currentColor;" viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="tags" style="margin-bottom: 1rem;">
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Rentals</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Fleet</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Automotive</span>
+                        </div>
+                        <h3>Professional Car Rental</h3>
+                        <p>Large-scale car rental services featuring a wide fleet of luxury, standard, and utility vehicles.</p>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Plane SVG -->
+                        <svg style="width: 48px; height: 48px; fill: currentColor;" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5L21 16z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="tags" style="margin-bottom: 1rem;">
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Tourism</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Ticketing</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Travel</span>
+                        </div>
+                        <h3>Professional Travels Agency</h3>
+                        <p>Comprehensive travel agency providing domestic and international tour packages, visas, and ticketing.</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Bus SVG -->
+                        <svg style="width: 48px; height: 48px; fill: currentColor;" viewBox="0 0 24 24"><path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="tags" style="margin-bottom: 1rem;">
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Transit</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Infrastructure</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Transport</span>
+                        </div>
+                        <h3>Private Bus Stand</h3>
+                        <p>Development and management of a structured private bus terminal for enhanced public transit and connectivity.</p>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Factory SVG -->
+                        <svg style="width: 48px; height: 48px; fill: currentColor;" viewBox="0 0 24 24"><path d="M22 10v12H2V10l7-3v2l5-2v3h8zm-8.8-1.5L9 10.3V5h4.2v3.5zM22 8h-8V2h8v6z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <div class="tags" style="margin-bottom: 1rem;">
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Manufacturing</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Industrial</span>
+                            <span class="tag" style="color: var(--primary); border-color: var(--primary);">Machinery</span>
+                        </div>
+                        <h3>Machine Manufacturing Company</h3>
+                        <p>Industrial manufacturing unit focused on producing commercial making machines and industrial equipment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h2>Let's build something <span>great</span>.</h2>
+            <p class="footer-subtitle">Open for new opportunities, speaking engagements, and collaborative research projects.</p>
+            
+            <a href="mailto:contact@shaddadmattool.com" class="btn btn-primary">Say Hello</a>
+
+            <div class="footer-bottom">
+                <div class="logo">S<span>M.</span></div>
+                <div class="social-icons" style="gap: 1rem;">
+                    <!-- Same social icons as hero, smaller -->
+                    <a href="https://github.com/Shaddad69" target="_blank" class="social-icon" style="width: 35px; height: 35px;">
+                        <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/shad_ad___mat_ool?stkn=eWgyNnNrNG5tZzIy" target="_blank" class="social-icon" style="width: 35px; height: 35px;">
+                        <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://t.me/SHADDADBINS%20HAMSUDHEEN" target="_blank" class="social-icon" style="width: 35px; height: 35px;">
+                        <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </a>
+                </div>
+                <p>&copy; 2026 Shaddad Mattool. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
