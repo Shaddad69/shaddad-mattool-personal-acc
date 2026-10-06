@@ -6,16 +6,16 @@
     <title>Shaddad Mattool | Portfolio</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --nav-bg: rgba(15, 23, 42, 0.85);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --card-hover: rgba(255, 255, 255, 0.06);
-            --primary: #10b981; /* Emerald */
-            --primary-hover: #059669;
-            --accent: #eab308; /* Gold */
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-color: #f8fafc; /* bg-gray-50 */
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --card-hover: #f1f5f9;
+            --primary: #312e81; /* text-indigo-900 */
+            --primary-hover: #1e1b4b;
+            --accent: #4338ca; /* bg-indigo-700 */
+            --text-main: #0f172a; /* text-gray-900 */
+            --text-muted: #475569; /* text-gray-600 */
             --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -26,7 +26,7 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
             color: var(--text-main);
             font-family: var(--font-family);
             line-height: 1.6;
@@ -402,20 +402,21 @@
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.2);
+            background: var(--primary);
+            color: #ffffff;
             padding: 5rem 0 2rem;
             text-align: center;
-            border-top: 1px solid var(--card-border);
             margin-top: 4rem;
         }
 
         footer h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            color: #ffffff;
         }
 
         footer p.footer-subtitle {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 2rem;
             font-size: 1.1rem;
         }
@@ -423,8 +424,8 @@
         .footer-bottom {
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid var(--card-border);
-            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
             display: flex;
             justify-content: space-between;
@@ -472,25 +473,13 @@
             justify-content: flex-end;
         }
 
-        .hero-portrait {
-            width: 256px;
-            height: 256px;
-            object-fit: contain;
-            mix-blend-mode: screen; /* Converts black background of JPG to transparent */
-            filter: drop-shadow(0 0 40px rgba(234, 179, 8, 0.4)) drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
-            transition: transform 0.5s ease, filter 0.5s ease;
-        }
-        
-        .hero-portrait:hover {
-            transform: translateY(-10px);
-            filter: drop-shadow(0 0 60px rgba(234, 179, 8, 0.6)) drop-shadow(0 0 30px rgba(16, 185, 129, 0.5));
-        }
-
-        @media (min-width: 768px) {
-            .hero-portrait {
-                width: 320px;
-                height: 320px;
-            }
+        .hero-image {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #eab308; /* Gold border */
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.5), 0 0 40px rgba(234, 179, 8, 0.2); /* Green glow */
         }
 
         @media (max-width: 992px) {
@@ -513,6 +502,14 @@
                 height: 250px;
             }
         }
+        /* Modal CSS */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
+        .modal-content { background-color: #fff; margin: 10% auto; padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; color: #111; }
+        .close-btn { color: #888; float: right; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; }
+        .close-btn:hover { color: #000; }
+        #contactForm input, #contactForm textarea { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-family: inherit; }
+        .submit-btn { background-color: #0056b3; color: white; padding: 12px; border: none; border-radius: 6px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; transition: 0.3s;}
+        .submit-btn:hover { background-color: #004494; }
     </style>
 </head>
 <body>
@@ -551,8 +548,19 @@
                 </div>
             </div>
             
-            <div class="hero-image-container">
-                <img src="photo-transparent.png" alt="Shaddad Mattool" class="hero-portrait">
+            <div class="hero-image-container" style="flex-direction: column; align-items: center;">
+                <img src="1000346647.jpg" alt="Shaddad Mattool" class="hero-image">
+                <div class="social-icons" style="margin-top: 2rem;">
+                    <a href="https://github.com/Shaddad69" target="_blank" class="social-icon" title="GitHub" style="box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/shad_ad___mat_ool?stkn=eWgyNnNrNG5tZzIy" target="_blank" class="social-icon" title="Instagram" style="box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://t.me/SHADDADBINS%20HAMSUDHEEN" target="_blank" class="social-icon" title="Telegram" style="box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -856,7 +864,7 @@
             <h2>Let's build something <span>great</span>.</h2>
             <p class="footer-subtitle">Open for new opportunities, speaking engagements, and collaborative research projects.</p>
             
-            <a href="mailto:contact@shaddadmattool.com" class="btn btn-primary">Say Hello</a>
+            <a href="#" id="sayHelloBtn" class="btn btn-primary">Say Hello</a>
 
             <div class="footer-bottom">
                 <div class="logo">S<span>M.</span></div>
@@ -876,6 +884,40 @@
             </div>
         </div>
     </footer>
+    <!-- Modal Structure -->
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Say Hello</h2>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { document.getElementById('contactModal').style.display='none'; document.getElementById('contactForm').reset(); alert('Message sent successfully!'); submitted=false; }"></iframe>
+        <form id="contactForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfAuTwf7_OPnsV9V6gccyho76TsCyHg2C_b5eoP4DHGOmCi6Q/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+          <input type="text" id="name" name="entry.1876445633" placeholder="Your Name" required>
+          <input type="email" id="email" name="entry.395816122" placeholder="Your Email" required>
+          <textarea id="message" name="entry.161976439" placeholder="Your Message" rows="4" required></textarea>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
 
+    <!-- Modal Script -->
+    <script>
+      var submitted = false;
+      const modal = document.getElementById("contactModal");
+      const btn = document.getElementById("sayHelloBtn"); 
+      const span = document.querySelector(".close-btn");
+
+      if(btn) {
+        btn.onclick = function(e) { 
+          e.preventDefault();
+          modal.style.display = "block"; 
+        }
+      }
+      if(span) {
+        span.onclick = function() { modal.style.display = "none"; }
+      }
+      window.onclick = function(event) { 
+        if (event.target == modal) { modal.style.display = "none"; } 
+      }
+    </script>
 </body>
 </html>
